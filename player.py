@@ -23,8 +23,8 @@ class Player:
         except:
             return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
 
-    def sort(list):
-        for card in list:
+    def sort(card_list):
+        for card in card_list:
             if card['rank'] == 'J':
                 card['rank'] = 11
             elif card['rank'] == "Q":
