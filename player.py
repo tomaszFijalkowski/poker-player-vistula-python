@@ -84,6 +84,12 @@ class Player:
         else:
             result = sum(pairs)/2*8
         return int(result)
+    
+    def find_three(self, card_list):
+        card_list = sort(card_list)
+        for i in range(0,len(card_list)-3):
+            if card_list[i]['rank'] == card_list[i+1]['rank']:
+                    return card_list[i]['rank']*250
 
     def find_max(self, card_list):
         result = self.sort(card_list)[-1]['rank']
