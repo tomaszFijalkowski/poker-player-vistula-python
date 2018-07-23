@@ -7,7 +7,8 @@ class Player:
         print(game_state["players"][game_state["in_action"]]["bet"]) 
         print(game_state["minimum_raise"])
         print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-        print("to jest self: ", self)
+        print("to jest self: ", self.id, " ", self.name)
+        print("to jest test: ", game_state["players"]["name"])
         print("_______________________________________________________________________________XXXXX")
 
 
