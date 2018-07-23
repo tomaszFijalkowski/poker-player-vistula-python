@@ -20,12 +20,21 @@ class Player:
             current_buy_in = int(game_state["current_buy_in"])
             my_bet = int(game_state["players"][game_state["in_action"]]["bet"])
             min_raise = game_state["minimum_raise"]
-            print("Values: NEW VERSION")
-            print(current_buy_in)
-            print(my_bet)
-            print(min_raise)
-            return current_buy_in - my_bet + min_raise
-            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            print("_____________________________________________XXXXXXX:")
+            if multiply >= 500:
+                print(multiply)
+                return 900
+            elif multiply >= 113:
+                print(multiply)
+                return 700
+            elif multiply >= 60:
+                print(multiply)
+                return 200
+            elif multiply >= 16:
+                print(multiply)
+                return 100
+            else:
+                return current_buy_in - my_bet + min_raise
         except Exception as err:
             print("_______________________________________________________")
             print(err) 
