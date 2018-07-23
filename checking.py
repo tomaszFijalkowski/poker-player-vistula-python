@@ -7,8 +7,8 @@ all_cards = [{"rank": "4", "suit": "hearts" },
 {"rank": "4", "suit": "spades" },
 ]
 
-def sor(list):
-    for card in list:
+def sort(card_list):
+    for card in card_list:
         if card['rank'] == 'J':
             card['rank'] = 11
         elif card['rank'] == "Q":
@@ -21,4 +21,4 @@ def sor(list):
             card['rank'] = int(card['rank'])
 
     all_cards_sorted = sorted(all_cards, key=lambda k: k['rank'])
-    return all_cards_sorteds
+    return all_cards_sorted

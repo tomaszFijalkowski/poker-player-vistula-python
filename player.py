@@ -19,12 +19,20 @@ class Player:
             print("allCards: ", allCards)
             print("_______________________________________________________________________________XXXXX")
 
-            return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            return game_state["players"][game_state["in_action"]]game_state["stack"]
         except:
-            return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            return 900
+            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
 
-    def sort(self, list):
-        for card in list:
+
+    
+    
+    
+    
+    
+    def sort(self, card_list):
+        for card in card_list:
             if card['rank'] == 'J':
                 card['rank'] = 11
             elif card['rank'] == "Q":
@@ -36,7 +44,7 @@ class Player:
             else:    
                 card['rank'] = int(card['rank'])
 
-        all_cards_sorted = sorted(all_cards, key=lambda k: k['rank'])
+        all_cards_sorted = sorted(card_list, key=lambda k: k['rank'])
         return all_cards_sorted
 
     def showdown(self, game_state):
