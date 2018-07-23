@@ -67,7 +67,7 @@ class Player:
         all_cards_sorted = sorted(card_list, key=lambda k: k['rank'])
         return all_cards_sorted
 
-    def find_pair(card_list):
+    def find_pair(self, card_list):
         pairs = []
         result = 0
         for card in card_list:
@@ -82,13 +82,19 @@ class Player:
         else:
             result = sum(pairs)/2*8
         return int(result)
+    
+    def find_three(self, card_list):
+        card_list = sort(card_list)
+        for i in range(0,len(card_list)-3):
+            if card_list[i]['rank'] == card_list[i+1]['rank']:
+                    return card_list[i]['rank']*250
 
-    def find_max(card_list):
+    def find_max(self, card_list):
         result = sort(card_list)[-1]['rank']
         return int(result)
 
     def find_set(self, card_list):
-        return max(find_max(card_list), find_pair(card_list))
+        return max(find_max(card_list), find_pair(card_list), find_three(card_list))
 
     def showdown(self, game_state):
         pass
