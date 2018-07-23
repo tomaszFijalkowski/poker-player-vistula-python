@@ -14,10 +14,9 @@ class Player:
 
             sortedCards = self.sort(allCards)
             multiply = self.find_set(sortedCards)
-
-
+            print()
             
-            return game_state["players"][game_state["in_action"]]["stack"] * self.percent(multiply)
+            return game_state["players"][game_state["in_action"]]["stack"]
         except:
             return 900
 
