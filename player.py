@@ -20,7 +20,7 @@ class Player:
             print("_______________________________________________________________________________XXXXX")
 
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-            return game_state["players"][game_state["in_action"]]game_state["stack"]
+            return game_state["players"][game_state["in_action"]]["stack"]
         except:
             return 900
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
