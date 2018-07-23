@@ -16,7 +16,7 @@ class Player:
             multiply = self.find_set(sortedCards)
             print(multiply)
             print(sortedCards)
-            return game_state["players"][game_state["in_action"]]["stack"]
+            return return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
         except:
             return 900
 
