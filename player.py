@@ -86,7 +86,7 @@ class Player:
         return int(result)
     
     def find_three(self, card_list):
-        card_list = sort(card_list)
+        card_list = self.sort(card_list)
         for i in range(0,len(card_list)-3):
             if card_list[i]['rank'] == card_list[i+1]['rank']:
                     return card_list[i]['rank']*250
