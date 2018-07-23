@@ -23,7 +23,7 @@ class Player:
             print("Values: " + current_buy_in + " " + my_bet + " " + min_raise)
             return 800
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-        except Exception, err:
+        except Exception as err:
             print("_______________________________________________________")
             print(err) 
             traceback.print_exc()
