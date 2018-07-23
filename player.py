@@ -78,7 +78,7 @@ class Player:
                     if card['suit'] != another_card['suit']:
                         pairs.append(card['rank'])
                         # result += int(card['rank'])/2
-        print(pairs) 
+        #print(pairs) 
         if len(pairs) >4:
             result = sum(pairs[2:])/2*25
         else:
