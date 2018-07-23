@@ -16,6 +16,10 @@ class Player:
             multiply = self.find_set(sortedCards)
             print(multiply)
             print(sortedCards)
+            current_buy_in = game_state["current_buy_in"]
+            my_bet = game_state["players"][game_state["in_action"]]["bet"]
+            min_raise = game_state["minimum_raise"]
+            print("Values: " + current_buy_in + " " + my_bet + " " + min_raise)
             return 800
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
         except:
