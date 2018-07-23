@@ -12,18 +12,16 @@ class Player:
             for dict in commonCards:
                 allCards.append(dict)
 
-            self.logGameState(game_state)
+            print("_______________________________________________________________________________:")
+            print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
+            print("commonCards: ", commonCards)
+            print("playerHand: ", playerHand)
+            print("allCards: ", allCards)
+            print("_______________________________________________________________________________XXXXX")
+            
             return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
         except:
             return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-
-    def logGameState(self, game_state):
-        print("_______________________________________________________________________________:")
-        print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-        print("commonCards: ", commonCards)
-        print("playerHand: ", playerHand)
-        print("allCards: ", allCards)
-        print("_______________________________________________________________________________XXXXX")
 
 
     def showdown(self, game_state):
