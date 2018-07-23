@@ -12,18 +12,46 @@ class Player:
             for dict_ in commonCards:
                 allCards.append(dict_)
 
-            print("_______________________________________________________________________________:")
-            print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-            print("commonCards: ", commonCards)
-            print("playerHand: ", playerHand)
-            print("allCards: ", allCards)
-            print("_______________________________________________________________________________XXXXX")
-            
-            return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-        except:
-            return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            sortedCards = self.sort(allCards)
 
-    def sort(card_list):
+            self.straight(sortedCards)
+
+
+
+            # print("_______________________________________________________________________________:")
+            # print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
+            # print("commonCards: ", commonCards)
+            # print("playerHand: ", playerHand)
+            # print("allCards: ", allCards)
+            # print("_______________________________________________________________________________XXXXX")
+
+            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+            return game_state["players"][game_state["in_action"]]["stack"]
+        except:
+            return 900
+            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+
+
+    def straight(self, card_list):
+        ammoutOfCards = len(card_list)
+        if ammoutOfCards == 5:
+            if (cards_list[-1]["rank"] - ammoutOfCards) == cards_list[0]["rank"]+1:
+                return cards_list[-1]["rank"] * 4000
+        elif ammoutOfCards == 6:
+            if (cards_list[-2]["rank"] - 5 == cards_list[1]["rank"]+1):
+                return cards_list[-2]["rank"] *  4000
+            elif (cards_list[-1]["rank"] - 5 == cards_list[2]["rank"]+1):
+                return cards_list[-1]["rank"] *  4000
+        elif ammoutOfCards == 6:
+            if (cards_list[-3]["rank"] - 5 == cards_list[1]["rank"]+1):
+                return cards_list[-3]["rank"] * 4000
+            elif (cards_list[-2]["rank"] - 5 == cards_list[2]["rank"]+1):
+                return cards_list[-2]["rank"] * 4000
+            elif (cards_list[-1]["rank"] - 5 == cards_list[3]["rank"]+1):
+                return cards_list[-1]["rank"] * 4000
+    
+    
+    def sort(self, card_list):
         for card in card_list:
             if card['rank'] == 'J':
                 card['rank'] = 11
@@ -36,7 +64,7 @@ class Player:
             else:    
                 card['rank'] = int(card['rank'])
 
-        all_cards_sorted = sorted(all_cards, key=lambda k: k['rank'])
+        all_cards_sorted = sorted(card_list, key=lambda k: k['rank'])
         return all_cards_sorted
 
     def find_pair(card_list):
