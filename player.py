@@ -7,6 +7,7 @@ class Player:
         except:
             pass
         finally:
+            print('DZIALA')
             return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
 
     def logGameState(self, game_state):
