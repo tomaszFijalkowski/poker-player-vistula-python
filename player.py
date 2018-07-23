@@ -12,12 +12,18 @@ class Player:
             for dict_ in commonCards:
                 allCards.append(dict_)
 
-            print("_______________________________________________________________________________:")
-            print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-            print("commonCards: ", commonCards)
-            print("playerHand: ", playerHand)
-            print("allCards: ", allCards)
-            print("_______________________________________________________________________________XXXXX")
+            sortedCards = self.sort(allCards)
+
+            self.straight(sortedCards)
+
+
+
+            # print("_______________________________________________________________________________:")
+            # print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
+            # print("commonCards: ", commonCards)
+            # print("playerHand: ", playerHand)
+            # print("allCards: ", allCards)
+            # print("_______________________________________________________________________________XXXXX")
 
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
             return game_state["players"][game_state["in_action"]]["stack"]
@@ -26,9 +32,23 @@ class Player:
             #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
 
 
-    
-    
-    
+    def straight(self, card_list):
+        ammoutOfCards = len(card_list)
+        if ammoutOfCards == 5:
+            if (cards_list[-1]["rank"] - ammoutOfCards) == cards_list[0]["rank"]+1:
+                return cards_list[-1]["rank"] * 4000
+        elif ammoutOfCards == 6:
+            if (cards_list[-2]["rank"] - 5 == cards_list[1]["rank"]+1):
+                return cards_list[-2]["rank"] *  4000
+            elif (cards_list[-1]["rank"] - 5 == cards_list[2]["rank"]+1):
+                return cards_list[-1]["rank"] *  4000
+        elif ammoutOfCards == 6:
+            if (cards_list[-3]["rank"] - 5 == cards_list[1]["rank"]+1):
+                return cards_list[-3]["rank"] * 4000
+            elif (cards_list[-2]["rank"] - 5 == cards_list[2]["rank"]+1):
+                return cards_list[-2]["rank"] * 4000
+            elif (cards_list[-1]["rank"] - 5 == cards_list[3]["rank"]+1):
+                return cards_list[-1]["rank"] * 4000
     
     
     def sort(self, card_list):
