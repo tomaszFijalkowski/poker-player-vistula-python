@@ -6,6 +6,7 @@ class Player:
         print(game_state["current_buy_in"])
         print(game_state["players"][game_state["in_action"]]["bet"]) 
         print(game_state["minimum_raise"])
+        print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
         print("_______________________________________________________________________________XXXXX")
         return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
 
