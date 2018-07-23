@@ -39,10 +39,10 @@ class Player:
                 return cards_list[-1]["rank"] * 4000
         elif ammoutOfCards == 6:
             if (cards_list[-2]["rank"] - 5 == cards_list[1]["rank"]+1):
-                return cards_list[-2]["rank"] *  4000
+                return cards_list[-2]["rank"] * 4000
             elif (cards_list[-1]["rank"] - 5 == cards_list[2]["rank"]+1):
-                return cards_list[-1]["rank"] *  4000
-        elif ammoutOfCards == 6:
+                return cards_list[-1]["rank"] * 4000
+        elif ammoutOfCards == 7:
             if (cards_list[-3]["rank"] - 5 == cards_list[1]["rank"]+1):
                 return cards_list[-3]["rank"] * 4000
             elif (cards_list[-2]["rank"] - 5 == cards_list[2]["rank"]+1):
