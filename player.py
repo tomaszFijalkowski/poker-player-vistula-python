@@ -13,27 +13,29 @@ class Player:
                 allCards.append(dict_)
 
             sortedCards = self.sort(allCards)
-
-            self.straight(sortedCards)
-
-
-
-            # print("_______________________________________________________________________________:")
-            # print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-            # print("commonCards: ", commonCards)
-            # print("playerHand: ", playerHand)
-            # print("allCards: ", allCards)
-            # print("_______________________________________________________________________________XXXXX")
-
-            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-            return game_state["players"][game_state["in_action"]]["stack"]
+            multiply = self.find_set(sortedCards)
+            print(multiply)
+            print(sortedCards)
+            
+            return game_state["players"][game_state["in_action"]]["stack"] * self.percent(multiply)
         except:
             return 900
-            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+
+    def percent(self, multiply):
+        if multiply >= 500:
+            return 1
+        elif multiply >= 113:
+            return 0.8
+        elif multiply >= 60:
+            return 0.5
+        elif multiply >= 16:
+            return 0.4
+        else:
+            return 0.3
 
 
-    def straight(self, card_list):
-        ammoutOfCards = len(card_list)
+    def straight(self, cards_list):
+        ammoutOfCards = len(cards_list)
         if ammoutOfCards == 5:
             if (cards_list[-1]["rank"] - ammoutOfCards) == cards_list[0]["rank"]+1:
                 return cards_list[-1]["rank"] * 4000
@@ -66,6 +68,35 @@ class Player:
 
         all_cards_sorted = sorted(card_list, key=lambda k: k['rank'])
         return all_cards_sorted
+
+    def find_pair(self, card_list):
+        pairs = []
+        result = 0
+        for card in card_list:
+            for another_card in card_list:
+                if card['rank'] == another_card['rank']:
+                    if card['suit'] != another_card['suit']:
+                        pairs.append(card['rank'])
+                        # result += int(card['rank'])/2
+        #print(pairs) 
+        if len(pairs) >4:
+            result = sum(pairs[2:])/2*25
+        else:
+            result = sum(pairs)/2*8
+        return int(result)
+    
+    def find_three(self, card_list):
+        card_list = self.sort(card_list)
+        for i in range(0,len(card_list)-3):
+            if card_list[i]['rank'] == card_list[i+1]['rank']:
+                    return card_list[i]['rank']*250
+
+    def find_max(self, card_list):
+        result = self.sort(card_list)[-1]['rank']
+        return int(result)
+
+    def find_set(self, card_list):
+        return max(self.find_max(card_list), self.find_pair(card_list), self.straight(card_list))
 
     def showdown(self, game_state):
         pass
