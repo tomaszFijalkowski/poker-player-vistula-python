@@ -100,7 +100,3 @@ class Player:
 
     def showdown(self, game_state):
         pass
-
-
-player = Player()
-print(player.betRequest(""))
