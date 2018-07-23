@@ -13,27 +13,29 @@ class Player:
                 allCards.append(dict_)
 
             sortedCards = self.sort(allCards)
-
-            self.straight(sortedCards)
-
+            multiply = self.find_set(sortedCards)
 
 
-            # print("_______________________________________________________________________________:")
-            # print(game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"])
-            # print("commonCards: ", commonCards)
-            # print("playerHand: ", playerHand)
-            # print("allCards: ", allCards)
-            # print("_______________________________________________________________________________XXXXX")
-
-            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
-            return game_state["players"][game_state["in_action"]]["stack"]
+            
+            return game_state["players"][game_state["in_action"]]["stack"] * self.percent(multiply)
         except:
             return 900
-            #return game_state["current_buy_in"] - game_state["players"][game_state["in_action"]]["bet"] + game_state["minimum_raise"]
+
+    def percent(self, multiply):
+        if multiply >= 500:
+            return 1
+        elif multiply >= 113:
+            return 0.7
+        elif multiply >= 60:
+            return 0.4
+        elif multiply >= 16:
+            return 0.1
+        else:
+            return 0
 
 
-    def straight(self, card_list):
-        ammoutOfCards = len(card_list)
+    def straight(self, cards_list):
+        ammoutOfCards = len(cards_list)
         if ammoutOfCards == 5:
             if (cards_list[-1]["rank"] - ammoutOfCards) == cards_list[0]["rank"]+1:
                 return cards_list[-1]["rank"] * 4000
@@ -42,7 +44,7 @@ class Player:
                 return cards_list[-2]["rank"] *  4000
             elif (cards_list[-1]["rank"] - 5 == cards_list[2]["rank"]+1):
                 return cards_list[-1]["rank"] *  4000
-        elif ammoutOfCards == 6:
+        elif ammoutOfCards == 7:
             if (cards_list[-3]["rank"] - 5 == cards_list[1]["rank"]+1):
                 return cards_list[-3]["rank"] * 4000
             elif (cards_list[-2]["rank"] - 5 == cards_list[2]["rank"]+1):
@@ -67,7 +69,7 @@ class Player:
         all_cards_sorted = sorted(card_list, key=lambda k: k['rank'])
         return all_cards_sorted
 
-    def find_pair(card_list):
+    def find_pair(self, card_list):
         pairs = []
         result = 0
         for card in card_list:
@@ -83,12 +85,12 @@ class Player:
             result = sum(pairs)/2*8
         return int(result)
 
-    def find_max(card_list):
-        result = sort(card_list)[-1]['rank']
+    def find_max(self, card_list):
+        result = self.sort(card_list)[-1]['rank']
         return int(result)
 
     def find_set(self, card_list):
-        return max(find_max(card_list), find_pair(card_list))
+        return max(self.find_max(card_list), self.find_pair(card_list), self.straight(card_list))
 
     def showdown(self, game_state):
         pass
