@@ -14,7 +14,8 @@ class Player:
 
             sortedCards = self.sort(allCards)
             multiply = self.find_set(sortedCards)
-            print()
+            print(multiply)
+            print(sortedCards)
             
             return game_state["players"][game_state["in_action"]]["stack"]
         except:
@@ -24,13 +25,13 @@ class Player:
         if multiply >= 500:
             return 1
         elif multiply >= 113:
-            return 0.7
+            return 0.8
         elif multiply >= 60:
-            return 0.4
+            return 0.5
         elif multiply >= 16:
-            return 0.1
+            return 0.4
         else:
-            return 0
+            return 0.3
 
 
     def straight(self, cards_list):
